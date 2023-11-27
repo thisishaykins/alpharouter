@@ -1,0 +1,53 @@
+{
+    "status": "success",
+    "code": "200",
+    "message": "data retrieved successfully",
+    "data": [
+        {
+            "id": "e2e8f88e-9778-49f1-80ac-198da9203d0f",
+            "name": "Kiki Comedy",
+            "description": "Here goes the description <>",
+            "type": "video",
+            "link": {
+                "source": "youtube",
+                "url": "https://www.youtube.com/embed/DJe_1AXRAmg?si=6QtC2EgDYv5ySWb4"
+            },
+            "timeout": 300,
+            "action": {
+                "button": "",
+                "url": "https://www.alphaandjam.com/"
+            }
+        },
+        {
+            "id": "e2e8f88e-9889-50f2-80ac-208da9203d0f",
+            "name": "Google Form for T-Shirt",
+            "description": "Here goes the description <>",
+            "type": "web",
+            "link": {
+                "source": "google",
+                "url": "https://docs.google.com/forms/d/e/1FAIpQLSfoJdpfvuYm88OXvzIOHN7RgJ_xJLLBi0ZsGz_0irrSa_DUGA/viewform?embedded=true"
+            },
+            "timeout": 300,
+            "action": {
+                "button": "",
+                "url": "https://www.alphaandjam.com/"
+            }
+        },
+        {
+            "id": "e2e8f88e-9889-50f2-80ac-208da9203d0f",
+            "name": "Ads image",
+            "description": "Here goes the description <>",
+            "type": "image",
+            "link": {
+                "source": "image",
+                "url": "https://docs.google.com/forms/d/e/1FAIpQLSfoJdpfvuYm88OXvzIOHN7RgJ_xJLLBi0ZsGz_0irrSa_DUGA/viewform?embedded=true"
+            },
+            "timeout": 300,
+            "action": {
+                "button": "",
+                "url": "https://www.alphaandjam.com/"
+            }
+        }
+    ]
+}
+

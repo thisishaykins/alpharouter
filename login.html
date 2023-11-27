@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>AlphaRouter - Main Access</title>
+    <title>AlphaRouter - Login Access</title>
     <link rel="stylesheet" type="text/css" href="assets/css/app.css">
 </head>
 
@@ -47,8 +47,8 @@
                     </div>
                 </div>
             </div>
-            <div class="box-root padding-top--24-none flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
-                <div class="box-root padding-top--48-none padding-bottom--24-none flex-flex flex-justifyContent--center">
+            <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
+                <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center" style="padding: 0;">
                     <h1>
                         <a href="#" rel="dofollow">
                             <img src="assets/images/alpha-and-jam-logo.png" alt="" srcset="">
@@ -56,25 +56,32 @@
                     </h1>
                 </div>
                 <div class="formbg-outer">
-                    <div class="formbg">
-                        <div class="formbg-inner padding-horizontal--24 no-padding">
-                            <!-- <iframe src="" frameborder="0"></iframe> -->
-                            <iframe
-                                src="https://docs.google.com/forms/d/e/1FAIpQLSfoJdpfvuYm88OXvzIOHN7RgJ_xJLLBi0ZsGz_0irrSa_DUGA/viewform?embedded=true"
-                                
-                                frameborder="0" marginheight="0" marginwidth="0"></iframe>
-                        </div>
-                        <div class="field padding-bottom--24-none center-center">
-                            <h4 class="text-center">Counting down: <span id="counter_timer"></span></h4>
-                            <a  id="counter_btn" href='https://sportdm.com' target="_blank" class="btn">Proceed !!</a>
-                        </div>
-                    </div>
-                    <div class="footer-link padding-top--24">
-                        <span>&copy; <strong id="app_year"></strong> AlphaRouter</span>
-                        <div class="listing padding-top--24 padding-bottom--24 flex-flex center-center">
-                            <!-- <span><a href="#">© <span id="app_year"></span> AlphaRouter</a></span><br/> -->
-                            <!-- <span><a href="#">Contact</a></span> -->
-                            <!-- <span><a href="#">Privacy & terms</a></span> -->
+                    <div class="formbg" style="max-width: 550px;">
+                        <div class="formbg-inner padding-horizontal--48" style="height: auto;">
+                            <span class="padding-bottom--15">Sign in your WiFi Account</span>
+                            <form id="stripe-login">
+                                <div class="field padding-bottom--24">
+                                    <label for="email">UUID</label>
+                                    <input type="email" name="email">
+                                </div>
+                                <div class="field padding-bottom--24">
+                                    <div class="grid--50-50">
+                                        <label for="password">Password</label>
+                                        <!-- <div class="reset-pass">
+                                            <a href="#">Forgot your password?</a>
+                                        </div> -->
+                                    </div>
+                                    <input type="password" name="password">
+                                </div>
+                                <div class="field field-checkbox padding-bottom--24 flex-flex align-center">
+                                    <label for="checkbox">
+                                        <input type="checkbox" name="checkbox"> Stay signed in for a week
+                                    </label>
+                                </div>
+                                <div class="field padding-bottom--24">
+                                    <input type="submit" name="submit" value="Continue">
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -83,7 +90,5 @@
     </div>
 </body>
 
-<script src="assets/js/app.js"></script>
-
 </html>
-<!-- src="https://docs.google.com/forms/d/e/1FAIpQLSfoJdpfvuYm88OXvzIOHN7RgJ_xJLLBi0ZsGz_0irrSa_DUGA/viewform?embedded=true" -->
+<html>
