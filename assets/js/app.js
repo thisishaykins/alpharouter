@@ -50,8 +50,11 @@ var x = setInterval(function () {
   // If the count down is over, write some text
   if (distance < 0) {
     clearInterval(x);
+
     document.getElementById("counter_timer").innerHTML = "EXPIRED";
     document.getElementById("counter_btn").style.display = "block";
+    
+    location.href = "https://sportdm.com/";
   }
 }, 1000);
 
