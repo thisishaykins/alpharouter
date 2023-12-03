@@ -180,7 +180,8 @@ label {
     text-align: center;
 }
 
-.field input, .btn {
+.field input,
+.btn {
     font-size: 16px;
     line-height: 28px;
     padding: 8px 16px;
@@ -199,7 +200,8 @@ label {
         rgba(0, 0, 0, 0) 0px 0px 0px 0px;
 }
 
-input[type="submit"], .btn {
+input[type="submit"],
+.btn {
     background-color: rgb(191 53 66);
     box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
         rgba(0, 0, 0, 0) 0px 0px 0px 0px,

@@ -6,9 +6,9 @@ let year = date.getFullYear();
 
 document.getElementById("app_year").innerHTML = year;
 
-const data_response = []
+const data_response = [];
 
-const timer_val = 20000
+const timer_val = 20000;
 
 // const myTimeout = setTimeout(allowAccessBtn, timer_val);
 
@@ -16,16 +16,13 @@ const timer_val = 20000
 //     document.getElementById("counter_btn").style.display = 'block';
 // }
 
-
 function addMinutes(date, minutes) {
   date.setMinutes(date.getMinutes() + minutes);
 
   return date;
 }
 
-
 const newDate = addMinutes(new Date(), timer_val / 10000);
-
 
 // Set the date we're counting down to
 var countDownDate = new Date(newDate).getTime();
@@ -58,17 +55,14 @@ var x = setInterval(function () {
   }
 }, 1000);
 
-
 fetch("../assets/js/app.json")
   .then((res) => {
     return res.json();
   })
   .then((data) => console.log(data))
-  .then(data_res => {
+  .then((data_res) => {
     const innerData = Object.values(data_res.data);
     data_response.push(...innerData);
 
-      console.log("data => ", data_response);
-  })
-
-
+    console.log("data => ", data_response);
+  });
