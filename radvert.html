@@ -1,12 +1,36 @@
 <html>
 
 <head>
+    <!-- <meta http-equiv="refresh" content="120; url=$(link-orig)"> -->
     <meta charset="utf-8">
-    <title>AlphaRouter - Main Access</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <title>AlphaRouter - Main Access & Advertisement</title>
     <link rel="stylesheet" type="text/css" href="assets/css/app.css">
+
+    <script>
+        var popup = '';
+        function openOrig() {
+            if (window.focus) popup.focus();
+            location.href = unescape('$(link-orig-esc)');
+        }
+        function openAd() {
+            location.href = unescape('$(link-redirect-esc)');
+        }
+        function openAdvert() {
+            if (window.name != 'hotspot_advert') {
+                popup = open('$(link-redirect)', 'hotspot_advert', '');
+                setTimeout("openOrig()", 20000);
+                return;
+            }
+            setTimeout("openAd()", 20000);
+        }
+    </script>
 </head>
 
 <body>
+<!-- <body onLoad="openAdvert()"> -->
     <div class="login-root">
         <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
             <div class="loginbackground box-background--white padding-top--250">
@@ -67,6 +91,7 @@
                         </div>
                         <div class="field padding-bottom--24-none center-center">
                             <h4 class="text-center">Counting down: <span id="counter_timer"></span></h4>
+                            <!-- <a id="counter_btn" href="$(link-redirect)" target="hotspot_advert" class="btn">Proceed !!</a> -->
                             <a id="counter_btn" href='https://sportdm.com' target="_blank" class="btn">Proceed !!</a>
                         </div>
                     </div>

@@ -2,33 +2,23 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="pragma" content="no-cache" />
-    <meta http-equiv="expires" content="-1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AlphaRouter - Login Access</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <title>AlphaRouter - Redirect</title>
     <link rel="stylesheet" type="text/css" href="assets/css/app.css">
+
+    <script>
+        function openLogin() {
+            if (window.name != 'hotspot_logout') return true;
+            open('$(link-login)', '_blank', '');
+            window.close();
+            return false;
+        }
+    </script>
 </head>
 
-<body>
-    $(if chap-id)
-        <form name="sendin" action="$(link-login-only)" method="post" style="display:none">
-            <input type="hidden" name="username" />
-            <input type="hidden" name="password" />
-            <input type="hidden" name="dst" value="$(link-orig)" />
-            <input type="hidden" name="popup" value="true" />
-        </form>
-        
-        <script src="assets/js/md5.js"></script>
-        <script>
-            function doLogin() {
-                document.sendin.username.value = document.login.username.value;
-                document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
-                document.sendin.submit();
-                return false;
-            }
-
-        </script>
-    $(endif)
+<body onLoad="startClock()">
     <div class="login-root">
         <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
             <div class="loginbackground box-background--white padding-top--250">
@@ -82,40 +72,40 @@
                 <div class="formbg-outer">
                     <div class="formbg" style="max-width: 550px;">
                         <div class="formbg-inner padding-horizontal--48" style="height: auto;">
-                            <span class="padding-bottom--15">Sign in your WiFi Account</span>
+                                                        
+                            <h1>You have just logged out!</h1>
+                            <table style="margin-top: 25px;">
+                                <tr>
+                                    <td>UUID</td>
+                                    <td>$(username)</td>
+                                </tr>
+                                <tr>
+                                    <td>IP address</td>
+                                    <td>$(ip)</td>
+                                </tr>
+                                <tr>
+                                    <td>MAC address</td>
+                                    <td>$(mac)</td>
+                                </tr>
+                                <tr>
+                                    <td>Session time</td>
+                                    <td>$(uptime)</td>
+                                </tr>
+                                $(if session-time-left)
+                                <tr>
+                                    <td>Time left</td>
+                                    <td>$(session-time-left)</td>
+                                </tr>
+                                $(endif)
+                                <tr>
+                                    <td>Bytes up / down:</td>
+                                    <td>$(bytes-in-nice) / $(bytes-out-nice)</td>
+                                </tr>
+                            </table>
                             
-                            <form id="stripe-login" name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>
-                                <input type="hidden" name="dst" value="$(link-orig)" />
-                                <input type="hidden" name="popup" value="true" />
-
-                                <p class="info $(if error)alert$(endif)">
-                                    $(if error == "")Please log in to use the internet hotspot service $(if trial == 'yes')<br />Free trial available,
-                                    <a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">click here</a>.$(endif)
-                                    $(endif)
-                                
-                                    $(if error)$(error)$(endif)
-                                </p>
-                                <div class="field padding-bottom--24">
-                                    <label for="uuid">UUID</label>
-                                    <input name="username" type="text" value="$(username)" placeholder="Username" id="uuid" />
-                                </div>
-                                <div class="field padding-bottom--24">
-                                    <div class="grid--50-50">
-                                        <label for="password">Password</label>
-                                        <!-- <div class="reset-pass">
-                                            <a href="#">Forgot your password?</a>
-                                        </div> -->
-                                    </div>
-                                    <input name="password" type="password" placeholder="Password" />
-                                </div>
-                                <div class="field field-checkbox padding-bottom--24 flex-flex align-center">
-                                    <label for="checkbox">
-                                        <input type="checkbox" name="checkbox"> Stay signed in for a week
-                                    </label>
-                                </div>
-                                <div class="field padding-bottom--24">
-                                    <input type="submit" name="submit" value="Connect">
-                                </div>
+                            
+                            <form action="$(link-login)" name="login" onSubmit="return openLogin()" style="margin-top: 25px;">
+                                <input class="btn" type="submit" value="Log in">
                             </form>
                             
                         </div>

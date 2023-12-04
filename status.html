@@ -1,34 +1,38 @@
 <html>
 
 <head>
+    $(if refresh-timeout)
+        <meta http-equiv="refresh" content="$(refresh-timeout-secs)">
+    $(endif)
     <meta charset="utf-8">
-    <meta http-equiv="pragma" content="no-cache" />
-    <meta http-equiv="expires" content="-1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AlphaRouter - Login Access</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <title>AlphaRouter - Status</title>
     <link rel="stylesheet" type="text/css" href="assets/css/app.css">
+
+    <script>
+        $(if advert - pending == 'yes')
+            var popup = '';
+        function focusAdvert() {
+            if (window.focus) popup.focus();
+        }
+        function openAdvert() {
+            popup = open('$(link-advert)', 'hotspot_advert', '');
+            setTimeout("focusAdvert()", 1000);
+        }
+        $(endif)
+        function openLogout() {
+            if (window.name != 'hotspot_status') return true;
+            open('$(link-logout)', 'hotspot_logout', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=280,height=250');
+            window.close();
+            return false;
+        }
+    </script>
 </head>
 
-<body>
-    $(if chap-id)
-        <form name="sendin" action="$(link-login-only)" method="post" style="display:none">
-            <input type="hidden" name="username" />
-            <input type="hidden" name="password" />
-            <input type="hidden" name="dst" value="$(link-orig)" />
-            <input type="hidden" name="popup" value="true" />
-        </form>
-        
-        <script src="assets/js/md5.js"></script>
-        <script>
-            function doLogin() {
-                document.sendin.username.value = document.login.username.value;
-                document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
-                document.sendin.submit();
-                return false;
-            }
-
-        </script>
-    $(endif)
+<!-- <body> -->
+<body $(if advert-pending=='yes' ) onLoad="openAdvert()" $(endif)>
     <div class="login-root">
         <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
             <div class="loginbackground box-background--white padding-top--250">
@@ -82,40 +86,55 @@
                 <div class="formbg-outer">
                     <div class="formbg" style="max-width: 550px;">
                         <div class="formbg-inner padding-horizontal--48" style="height: auto;">
-                            <span class="padding-bottom--15">Sign in your WiFi Account</span>
+                                                        
+                            $(if login-by == 'trial')
+                                <h1>Hi, <!--trial user!--></h1>
+                            $(elif login-by != 'mac')
+                                <h1>Hi, $(username)!</h1>
+                            $(endif)
                             
-                            <form id="stripe-login" name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>
-                                <input type="hidden" name="dst" value="$(link-orig)" />
-                                <input type="hidden" name="popup" value="true" />
-
-                                <p class="info $(if error)alert$(endif)">
-                                    $(if error == "")Please log in to use the internet hotspot service $(if trial == 'yes')<br />Free trial available,
-                                    <a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">click here</a>.$(endif)
+                            <form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
+                                <table>
+                                    <tr>
+                                        <td>IP address</td>
+                                        <td>$(ip)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bytes up / down</td>
+                                        <td>$(bytes-in-nice) / $(bytes-out-nice)</td>
+                                    </tr>
+                                    $(if session-time-left)
+                                    <tr>
+                                        <td>Connected / left</td>
+                                        <td>$(uptime) / $(session-time-left)</td>
+                                    </tr>
+                                    $(else)
+                                    <tr>
+                                        <td>Connected</td>
+                                        <td>$(uptime)</td>
+                                    </tr>
                                     $(endif)
+                                    $(if blocked == 'yes')
+                                    <tr>
+                                        <td>Status</td>
+                                        <td>
+                                            <a href="$(link-advert)" target="hotspot_advert">Advertisement required</a>
+                                        </td>
+                                    </tr>
+                                    $(elif refresh-timeout)
+                                    <tr>
+                                        <td>Status refresh</td>
+                                        <td>$(refresh-timeout)</td>
+                                    </tr>
+                                    $(endif)
+                                </table>
                                 
-                                    $(if error)$(error)$(endif)
-                                </p>
-                                <div class="field padding-bottom--24">
-                                    <label for="uuid">UUID</label>
-                                    <input name="username" type="text" value="$(username)" placeholder="Username" id="uuid" />
-                                </div>
-                                <div class="field padding-bottom--24">
-                                    <div class="grid--50-50">
-                                        <label for="password">Password</label>
-                                        <!-- <div class="reset-pass">
-                                            <a href="#">Forgot your password?</a>
-                                        </div> -->
-                                    </div>
-                                    <input name="password" type="password" placeholder="Password" />
-                                </div>
-                                <div class="field field-checkbox padding-bottom--24 flex-flex align-center">
-                                    <label for="checkbox">
-                                        <input type="checkbox" name="checkbox"> Stay signed in for a week
-                                    </label>
-                                </div>
-                                <div class="field padding-bottom--24">
-                                    <input type="submit" name="submit" value="Connect">
-                                </div>
+                                $(if login-by-mac != 'yes')
+                                    <!-- user manager link. if user manager resides on other router, replace $(hostname) by its address
+                                        <button onclick="document.location='http://$(hostname)/user?subs='; return false;">status</button>
+                                    <!-- end of user manager link -->
+                                    <input class="btn" type="submit" value="Log out">
+                                $(endif)
                             </form>
                             
                         </div>
