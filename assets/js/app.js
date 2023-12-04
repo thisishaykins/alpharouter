@@ -50,8 +50,9 @@ var x = setInterval(function () {
 
     document.getElementById("counter_timer").innerHTML = "EXPIRED";
     document.getElementById("counter_btn").style.display = "block";
-    
-    location.href = "https://sportdm.com/";
+    document.getElementById("counter_timer_main").style.display = "none";
+
+    // location.href = "https://sportdm.com/";
   }
 }, 1000);
 
